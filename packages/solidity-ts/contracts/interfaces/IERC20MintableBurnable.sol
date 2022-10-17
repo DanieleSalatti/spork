@@ -85,7 +85,7 @@ interface IERC20MintableBurnable {
    *
    * Returns a boolean value indicating whether the operation succeeded.
    */
-  function mint(address to, uint256 amount) external returns (bool);
+  function mint(address to, uint256 amount) external;
 
   /**
    * @dev Destroys `amount` tokens from `account`, deducting from the caller's

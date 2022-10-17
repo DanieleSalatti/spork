@@ -6,16 +6,12 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/draft-ERC20Permit.sol";
 
-contract MyToken is ERC20, ERC20Burnable, AccessControl, ERC20Permit {
-  bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-
+contract TestSPORK is ERC20, ERC20Burnable, AccessControl, ERC20Permit {
   constructor() ERC20("TestSPORK", "tSPORK") ERC20Permit("TestSPORK") {
     _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-    _grantRole(MINTER_ROLE, msg.sender);
-    _mint(msg.sender, 10000 ether);
   }
 
-  function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
+  function mint(address to, uint256 amount) public {
     _mint(to, amount);
   }
 }

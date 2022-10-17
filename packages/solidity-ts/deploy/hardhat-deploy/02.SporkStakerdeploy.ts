@@ -1,16 +1,24 @@
 import { DeployFunction } from 'hardhat-deploy/types';
 import { THardhatRuntimeEnvironmentExtended } from 'helpers/types/THardhatRuntimeEnvironmentExtended';
 
+import { TestSPORK } from '~common/generated/contract-types';
+
 const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => {
   const { getNamedAccounts, deployments } = hre;
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  await deploy('YourNFT', {
+
+  const SPORK: TestSPORK = await ethers.getContract('TestSPORK', deployer);
+  const StakedSPORK = await ethers.getContract('TestStakedSPORK', deployer);
+
+  const staker = await deploy('SporkStaker', {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy
     from: deployer,
-    // args: ["Hello"],
+    args: [SPORK.address, StakedSPORK.address, 1665962086],
     log: true,
   });
+
+  await StakedSPORK.addMinter(staker.address);
 
   /*
     // Getting a previously deployed contract
@@ -21,7 +29,7 @@ const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => 
   */
 };
 export default func;
-func.tags = ['YourNFT'];
+func.tags = ['SporkStaker'];
 
 /*
 Tenderly verification

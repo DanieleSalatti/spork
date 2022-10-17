@@ -33,29 +33,42 @@ export const appContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Contracts examples either using hardhat or foundry
       // --------------------------------------------------
-      YourContract:
+      SporkStaker:
         scaffoldConfig.build.solidityToolkit === 'hardhat'
           ? createConnectorForHardhatContract(
-              'YourContract',
-              toolkitContracts.YourContract__factory,
+              'SporkStaker',
+              toolkitContracts.SporkStaker__factory,
               hardhatDeployedContractsJson
             )
           : createConnectorForFoundryContract(
-              'YourContract',
-              toolkitContracts.YourContract__factory,
+              'SporkStaker',
+              toolkitContracts.SporkStaker__factory,
               foundryDeployedContractsJson
             ),
 
-      YourNFT:
+      TestSPORK:
         scaffoldConfig.build.solidityToolkit === 'hardhat'
           ? createConnectorForHardhatContract(
-              'YourNFT',
-              toolkitContracts.YourNFT__factory,
+              'TestSPORK',
+              toolkitContracts.TestSPORK__factory,
               hardhatDeployedContractsJson
             )
           : createConnectorForFoundryContract(
-              'YourNFT',
-              toolkitContracts.YourNFT__factory,
+              'TestSPORK',
+              toolkitContracts.TestSPORK__factory,
+              foundryDeployedContractsJson
+            ),
+
+      TestStakedSPORK:
+        scaffoldConfig.build.solidityToolkit === 'hardhat'
+          ? createConnectorForHardhatContract(
+              'TestStakedSPORK',
+              toolkitContracts.TestStakedSPORK__factory,
+              hardhatDeployedContractsJson
+            )
+          : createConnectorForFoundryContract(
+              'TestStakedSPORK',
+              toolkitContracts.TestStakedSPORK__factory,
               foundryDeployedContractsJson
             ),
 
@@ -67,15 +80,15 @@ export const appContractsConfig = () => {
       // --------------------------------------------------
       // 🙋🏽‍♂️ Add your external abi here (unverified contracts)`
       // --------------------------------------------------
-      YourContractFromAbi: createConnectorForExternalAbi(
-        'YourContract',
+      SporkStakerFromAbi: createConnectorForExternalAbi(
+        'SporkStaker',
         {
           [1235]: {
             address: 'xxx',
           },
         },
-        toolkitContracts.YourContract__factory.abi
-        // optional if you have a connect function:  externalContracts.YourContract__factory.connect
+        toolkitContracts.SporkStaker__factory.abi
+        // optional if you have a connect function:  externalContracts.SporkStaker__factory.connect
       ),
     } as const;
 

@@ -31,7 +31,7 @@ contract SporkStaker {
     return block.timestamp;
   }
 
-  function stake(uint256 amount) external {
+  function stake(uint256 amount) public {
     if (amount == 0) {
       revert INVALID_AMOUNT();
     }
@@ -40,7 +40,7 @@ contract SporkStaker {
     emit Staked(msg.sender, amount);
   }
 
-  function unstake(uint256 amount) external {
+  function unstake(uint256 amount) public {
     if (amount == 0) {
       revert INVALID_AMOUNT();
     }

@@ -1,3 +1,4 @@
+/*
 import '~helpers/hardhat-imports';
 import '~tests/utils/chai-imports';
 
@@ -48,3 +49,4 @@ describe('🚩 Challenge 0: 🎟 Simple NFT Example 🤓', function () {
     });
   });
 });
+*/

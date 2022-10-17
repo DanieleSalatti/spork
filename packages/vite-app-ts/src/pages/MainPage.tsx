@@ -132,7 +132,7 @@ export const MainPage: FC = () => {
 
   const pageList: TContractPageList = {
     mainPage: {
-      name: 'YourContract',
+      name: 'Stake',
       content: (
         <Staker
           StakedSpork={stakedSpork}
@@ -164,17 +164,6 @@ export const MainPage: FC = () => {
               mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
               blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
           </>
-        ),
-      },
-      {
-        name: 'Mainnet-Dai',
-        content: (
-          <GenericContract
-            contractName="Dai"
-            contract={mainnetDai}
-            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}
-          />
         ),
       },
     ],

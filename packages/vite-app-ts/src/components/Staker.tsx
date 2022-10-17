@@ -46,40 +46,42 @@ export const Staker: FC<IStakerProps> = (props) => {
   }
 
   return (
-    <>
-      <h1>Staker</h1>
-      <p>Spork: {Spork.address}</p>
-      <p>StakedSpork: {StakedSpork.address}</p>
-      <p>Staker: {Staker.address}</p>
-      <p>SPORKBalance: {formatEther(SPORKBalance || 0)}</p>
-      <p>StakedSPORKBalance: {formatEther(StakedSPORKBalance || 0)}</p>
-      <button
-        onClick={(): void => {
-          void mintSPORK();
-        }}>
-        Mint SPORK
-      </button>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label htmlFor="sporkToStake">Spork to stake</label>
-        <input type="number" onChange={(e): void => setSporkToStake(parseEther(e.target.value))} />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: 400, alignSelf: 'center', marginTop: 30 }}>
+        <h1>Staker</h1>
+        <p>Spork: {Spork.address}</p>
+        <p>StakedSpork: {StakedSpork.address}</p>
+        <p>Staker: {Staker.address}</p>
+        <p>SPORKBalance: {formatEther(SPORKBalance || 0)}</p>
+        <p>StakedSPORKBalance: {formatEther(StakedSPORKBalance || 0)}</p>
+        <button
+          onClick={(): void => {
+            void mintSPORK();
+          }}>
+          Mint SPORK
+        </button>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label htmlFor="sporkToStake">Spork to stake</label>
+          <input type="number" onChange={(e): void => setSporkToStake(parseEther(e.target.value))} />
 
-        <button
-          onClick={(): void => {
-            void stakeSPORK();
-          }}>
-          Stake SPORK
-        </button>
+          <button
+            onClick={(): void => {
+              void stakeSPORK();
+            }}>
+            Stake SPORK
+          </button>
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <label htmlFor="sporkToUnStake">Spork to unstake</label>
+          <input type="number" onChange={(e): void => setSporkToUnStake(parseEther(e.target.value))} />
+          <button
+            onClick={(): void => {
+              void unstakeSPORK();
+            }}>
+            Unstake SPORK
+          </button>
+        </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <label htmlFor="sporkToUnStake">Spork to unstake</label>
-        <input type="number" onChange={(e): void => setSporkToUnStake(parseEther(e.target.value))} />
-        <button
-          onClick={(): void => {
-            void unstakeSPORK();
-          }}>
-          Unstake SPORK
-        </button>
-      </div>
-    </>
+    </div>
   );
 };

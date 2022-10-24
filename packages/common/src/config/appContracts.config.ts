@@ -59,16 +59,16 @@ export const appContractsConfig = () => {
               foundryDeployedContractsJson
             ),
 
-      TestStakedSPORK:
+      StakedSPORK:
         scaffoldConfig.build.solidityToolkit === 'hardhat'
           ? createConnectorForHardhatContract(
-              'TestStakedSPORK',
-              toolkitContracts.TestStakedSPORK__factory,
+              'StakedSPORK',
+              toolkitContracts.StakedSPORK__factory,
               hardhatDeployedContractsJson
             )
           : createConnectorForFoundryContract(
-              'TestStakedSPORK',
-              toolkitContracts.TestStakedSPORK__factory,
+              'StakedSPORK',
+              toolkitContracts.StakedSPORK__factory,
               foundryDeployedContractsJson
             ),
 

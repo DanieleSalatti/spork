@@ -7,10 +7,10 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 
 error TRANSFER_NOT_ALLOWER();
 
-contract TestStakedSPORK is ERC20, ERC20Burnable, AccessControl {
+contract StakedSPORK is ERC20, ERC20Burnable, AccessControl {
   bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-  constructor() ERC20("TestStakedSPORK", "tsSPORK") {
+  constructor() ERC20("StakedSPORK", "sSPORK") {
     _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
   }
 

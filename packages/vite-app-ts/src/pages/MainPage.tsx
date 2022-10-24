@@ -1,5 +1,4 @@
 /* eslint-disable unused-imports/no-unused-vars-ts */
-import { GenericContract } from 'eth-components/ant/generic-contract';
 import { useBalance, useContractReader, useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
@@ -85,7 +84,7 @@ export const MainPage: FC = () => {
 
   // init contracts
   const spork = useAppContracts('TestSPORK', ethersAppContext.chainId);
-  const stakedSpork = useAppContracts('TestStakedSPORK', ethersAppContext.chainId);
+  const stakedSpork = useAppContracts('StakedSPORK', ethersAppContext.chainId);
   const staker = useAppContracts('SporkStaker', ethersAppContext.chainId);
   // const yourNFT = useAppContracts('YourNFT', ethersAppContext.chainId);
   const mainnetDai = useAppContracts('DAI', networkDefinitions.mainnet.chainId);
@@ -140,14 +139,23 @@ export const MainPage: FC = () => {
           Staker={staker}
           SPORKBalance={sporkBalance}
           StakedSPORKBalance={stakedSporkBalance}
+          unstake={false}
         />
       ),
     },
     pages: [
       {
-        name: 'Contracts',
+        name: 'Unstake',
         content: (
-          <>
+          <Staker
+            StakedSpork={stakedSpork}
+            Spork={spork}
+            Staker={staker}
+            SPORKBalance={sporkBalance}
+            StakedSPORKBalance={stakedSporkBalance}
+            unstake={true}
+          />
+          /* <>
             <GenericContract
               contractName="StakedSPORK"
               contract={stakedSpork}
@@ -163,7 +171,7 @@ export const MainPage: FC = () => {
               contract={staker}
               mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
               blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
-          </>
+          </>*/
         ),
       },
     ],

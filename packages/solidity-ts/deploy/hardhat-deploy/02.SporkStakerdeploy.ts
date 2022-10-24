@@ -9,7 +9,7 @@ const func: DeployFunction = async (hre: THardhatRuntimeEnvironmentExtended) => 
   const { deployer } = await getNamedAccounts();
 
   const SPORK: TestSPORK = await ethers.getContract('TestSPORK', deployer);
-  const StakedSPORK = await ethers.getContract('TestStakedSPORK', deployer);
+  const StakedSPORK = await ethers.getContract('StakedSPORK', deployer);
 
   const staker = await deploy('SporkStaker', {
     // Learn more about args here: https://www.npmjs.com/package/hardhat-deploy#deploymentsdeploy

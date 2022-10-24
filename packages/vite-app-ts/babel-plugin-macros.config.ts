@@ -3,4 +3,5 @@ export default {
   twin: {
     preset: 'emotion',
   },
+  runtime: 'classic',
 };

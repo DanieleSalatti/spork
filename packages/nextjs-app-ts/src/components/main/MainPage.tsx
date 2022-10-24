@@ -1,26 +1,26 @@
-import { GenericContract } from 'eth-components/ant/generic-contract';
-import { useContractReader, useBalance, useEthersAdaptorFromProviderOrSigners, useEventListener } from 'eth-hooks';
+import { useBalance, useContractReader, useEthersAdaptorFromProviderOrSigners } from 'eth-hooks';
 import { useEthersAppContext } from 'eth-hooks/context';
 import { useDexEthPrice } from 'eth-hooks/dapps';
 import { asEthersAdaptor } from 'eth-hooks/functions';
 import { NextPage } from 'next';
 import { ReactElement } from 'react';
 
-import { MainPageFooter, MainPageHeader, createTabsAndPages, TContractPageList } from '.';
+import { Staker } from '../Staker';
 
-import { useLoadAppContracts, useConnectAppContracts, useAppContracts } from '~common/components/context';
+import { createTabsAndPages, MainPageFooter, MainPageHeader, TContractPageList } from '.';
+
+import { useAppContracts, useConnectAppContracts, useLoadAppContracts } from '~common/components/context';
 import { useCreateAntNotificationHolder } from '~common/components/hooks/useAntNotification';
 import { useBurnerFallback } from '~common/components/hooks/useBurnerFallback';
 import { useScaffoldAppProviders } from '~common/components/hooks/useScaffoldAppProviders';
-import { networkDefinitions } from '~common/constants';
 import { useScaffoldHooksExamples } from '~~/components/hooks/useScaffoldHooksExamples';
 import {
   AVAILABLE_NETWORKS_DEFINITIONS,
+  BURNER_FALLBACK_ENABLED,
   CONNECT_TO_BURNER_AUTOMATICALLY,
+  INFURA_ID,
   LOCAL_PROVIDER,
   MAINNET_PROVIDER,
-  INFURA_ID,
-  BURNER_FALLBACK_ENABLED,
 } from '~~/config/nextjsApp.config';
 import { TAppProps } from '~~/models/TAppProps';
 
@@ -92,20 +92,23 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
   // -----------------------------
 
   // init contracts
-  const yourContract = useAppContracts('YourContract', ethersAppContext.chainId);
-  const yourNFT = useAppContracts('YourNFT', ethersAppContext.chainId);
-  const mainnetDai = useAppContracts('DAI', networkDefinitions.mainnet.chainId);
-
+  const spork = useAppContracts('TestSPORK', ethersAppContext.chainId);
+  const stakedSpork = useAppContracts('StakedSPORK', ethersAppContext.chainId);
+  const staker = useAppContracts('SporkStaker', ethersAppContext.chainId);
   // keep track of a variable from the contract in the local React state:
-  const [purpose, update] = useContractReader(
-    yourContract,
-    yourContract?.purpose,
-    [],
-    yourContract?.filters.SetPurpose()
+  const [sporkBalance] = useContractReader(
+    spork,
+    spork?.balanceOf,
+    [ethersAppContext.account!]
+    // yourContract?.filters.SetPurpose()
   );
 
-  // 📟 Listen for broadcast events
-  const [setPurposeEvents] = useEventListener(yourContract, 'SetPurpose', 0);
+  const [stakedSporkBalance] = useContractReader(
+    stakedSpork,
+    stakedSpork?.balanceOf,
+    [ethersAppContext.account!]
+    // yourContract?.filters.SetPurpose()
+  );
 
   // -----------------------------
   // .... 🎇 End of examples
@@ -125,36 +128,47 @@ export const MainPage: NextPage<IMainPageProps> = (props) => {
   // This is the list of tabs and their contents
   const pageList: TContractPageList = {
     mainPage: {
-      name: 'YourContract',
+      name: 'Stake',
       content: (
-        <GenericContract
-          contractName="YourContract"
-          contract={yourContract}
-          mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-          blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}
+        <Staker
+          StakedSpork={stakedSpork}
+          Spork={spork}
+          Staker={staker}
+          SPORKBalance={sporkBalance}
+          StakedSPORKBalance={stakedSporkBalance}
+          unstake={false}
         />
       ),
     },
     pages: [
       {
-        name: 'YourNFT',
+        name: 'Unstake',
         content: (
-          <GenericContract
-            contractName="YourNFT"
-            contract={yourNFT}
-            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
-        ),
-      },
-      {
-        name: 'Mainnet-Dai',
-        content: (
-          <GenericContract
-            contractName="Dai"
-            contract={mainnetDai}
-            mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
-            blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}
+          <Staker
+            StakedSpork={stakedSpork}
+            Spork={spork}
+            Staker={staker}
+            SPORKBalance={sporkBalance}
+            StakedSPORKBalance={stakedSporkBalance}
+            unstake={true}
           />
+          /* <>
+            <GenericContract
+              contractName="StakedSPORK"
+              contract={stakedSpork}
+              mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+              blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
+            <GenericContract
+              contractName="SPORK"
+              contract={spork}
+              mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+              blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
+            <GenericContract
+              contractName="Staker"
+              contract={staker}
+              mainnetAdaptor={scaffoldAppProviders.mainnetAdaptor}
+              blockExplorer={scaffoldAppProviders.currentTargetNetwork.blockExplorer}></GenericContract>
+          </>*/
         ),
       },
     ],

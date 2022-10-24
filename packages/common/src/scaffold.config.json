@@ -1,10 +1,12 @@
 {
   "build": {
     "solidityToolkit": "hardhat",
-    "reactBuild": "vite"
+    "reactBuild": "nextjs"
   },
   "runtime": {
-    "availableNetworks": ["localhost", "mumbai"],
+    "availableNetworks": [
+      "mumbai"
+    ],
     "targetNetwork": "mumbai",
     "networkConfig": {
       "rpcMainnetInfuraUrl": "https://mainnet.infura.io/v3"

@@ -1,5 +1,5 @@
-import '~~/styles/tailwind.css';
 import '~~/styles/globals.css';
+import '~~/styles/tailwind.css';
 
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
@@ -7,9 +7,9 @@ import { EthComponentsSettingsContext, IEthComponentsSettings } from 'eth-compon
 import { EthersAppContext } from 'eth-hooks/context';
 import { NextComponentType } from 'next';
 import { AppContext, AppInitialProps, AppProps } from 'next/app';
-import React, { FC, ReactNode, Suspense, useState } from 'react';
+import { FC, ReactNode, Suspense, useState } from 'react';
 import { ThemeSwitcherProvider } from 'react-css-theme-switcher';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import { ErrorBoundary, ErrorFallback } from '~common/components';
 import { BLOCKNATIVE_DAPPID } from '~~/config/nextjsApp.config';
@@ -68,19 +68,19 @@ const MyApp: NextComponentType<AppContext, AppInitialProps, AppProps> = ({ Compo
   console.log('loading app...');
   const [queryClient] = useState(() => new QueryClient());
 
-  const dehydradedState = props.pageProps.dehydratedState as unknown;
+  // const dehydradedState = props.pageProps.dehydratedState as unknown;
 
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <CacheProvider value={cache}>
         <QueryClientProvider client={queryClient}>
-          <Hydrate state={dehydradedState}>
-            <ProviderWrapper>
-              <Suspense fallback={<div />}>
-                <Component {...props.pageProps} />
-              </Suspense>
-            </ProviderWrapper>
-          </Hydrate>
+          {/* <Hydrate state={dehydradedState}>*/}
+          <ProviderWrapper>
+            <Suspense fallback={<div />}>
+              <Component {...props.pageProps} />
+            </Suspense>
+          </ProviderWrapper>
+          {/* </Hydrate>*/}
         </QueryClientProvider>
       </CacheProvider>
     </ErrorBoundary>

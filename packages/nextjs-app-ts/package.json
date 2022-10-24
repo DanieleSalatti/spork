@@ -6,7 +6,7 @@
   "scripts": {
     "start": "next dev",
     "dev": "next dev",
-    "build": "yarn build:anttheme && next build",
+    "build": "yarn build:anttheme && next build && next export",
     "serve": "next start",
     "lint:next": "next lint",
     "lint": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore ./src",

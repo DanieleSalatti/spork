@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "sourceMap": true,
     "allowJs": true,
     "esModuleInterop": true,
@@ -15,16 +19,26 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "rootDirs": [".", "../common/src"],
+    "rootDirs": [
+      ".",
+      "../common/src"
+    ],
     "baseUrl": ".",
     "jsx": "preserve",
     "jsxImportSource": "@emotion/react",
     "paths": {
-      "~~/*": ["./src/*"],
-      "~common/*": ["../common/src/*"]
+      "~~/*": [
+        "./src/*"
+      ],
+      "~common/*": [
+        "../common/src/*"
+      ]
     }
   },
-  "include": ["src", "../common/src"],
+  "include": [
+    "src",
+    "../common/src"
+  ],
   "exclude": [
     "**/node_modules",
     ".husky",

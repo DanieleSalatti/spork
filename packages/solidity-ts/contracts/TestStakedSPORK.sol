@@ -21,16 +21,4 @@ contract TestStakedSPORK is ERC20, ERC20Burnable, AccessControl {
   function addMinter(address minter) public onlyRole(DEFAULT_ADMIN_ROLE) {
     _grantRole(MINTER_ROLE, minter);
   }
-
-  function transfer(address recipient, uint256 amount) public virtual override returns (bool) {
-    revert TRANSFER_NOT_ALLOWER();
-  }
-
-  function transferFrom(
-    address sender,
-    address recipient,
-    uint256 amount
-  ) public virtual override returns (bool) {
-    revert TRANSFER_NOT_ALLOWER();
-  }
 }

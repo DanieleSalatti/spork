@@ -3491,7 +3491,6 @@ __metadata:
     stream-browserify: ^3.0.0
     surge: ^0.23.1
     tailwindcss: ^3.2.1
-    tailwindcss-elevation: ^1.0.1
     timers-browserify: ^2.0.12
     ts-invariant: ^0.10.3
     typescript: ^4.8.4
@@ -3716,7 +3715,6 @@ __metadata:
     stream-browserify: ^3.0.0
     surge: ^0.23.1
     tailwindcss: ^3.1.8
-    tailwindcss-elevation: ^1.0.1
     timers-browserify: ^2.0.12
     ts-invariant: ^0.10.3
     ts-node: ^10.9.1
@@ -13478,13 +13476,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hex-rgb@npm:^4.1.0":
-  version: 4.3.0
-  resolution: "hex-rgb@npm:4.3.0"
-  checksum: e654648db8647446f0111c68690d9b340eb192a93c8b2c6789a2b8deb5c20e757515ae209c5ae67074acfddf8575f9fc645d4ffaa0596d859457b08e180d791d
-  languageName: node
-  linkType: hard
-
 "hi-base32@npm:~0.5.0":
   version: 0.5.1
   resolution: "hi-base32@npm:0.5.1"
@@ -22630,17 +22621,6 @@ __metadata:
     string-width: ^4.2.3
     strip-ansi: ^6.0.1
   checksum: 5b07fe462ee03d2e1fac02cbb578efd2e0b55ac07e3d3db2e950aa9570ade5a4a2b8d3c15e9f25c89e4e50b646bc4269934601ee1eef4ca7968ad31960977690
-  languageName: node
-  linkType: hard
-
-"tailwindcss-elevation@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "tailwindcss-elevation@npm:1.0.1"
-  dependencies:
-    hex-rgb: ^4.1.0
-  peerDependencies:
-    tailwindcss: ^2.0.1
-  checksum: f78606fc58fee11b7294e6b6b46b289b21ad7b32a01368cfd76015dbeb2b7acf5f86c06b83b5e1e8dd29417fc65e831fe8bc10c903bf80e1cdcf01d435060279
   languageName: node
   linkType: hard
 

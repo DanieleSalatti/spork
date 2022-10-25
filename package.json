@@ -70,14 +70,14 @@
   },
   "packageManager": "yarn@3.2.1",
   "devDependencies": {
-    "chalk": "^4.1.2",
-    "commander": "^9.4.0",
+    "chalk": "^5.1.2",
+    "commander": "^9.4.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.23.1",
+    "eslint": "^8.26.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "prettier-plugin-solidity": "^1.0.0-dev.23",
+    "prettier-plugin-solidity": "^1.0.0-beta.24",
     "shx": "^0.3.4",
     "syncpack": "^8.2.4",
     "ts-node": "^10.9.1"
